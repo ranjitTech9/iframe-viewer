@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/iframe-viewer/sw.js', { scope: '/iframe-viewer/' })})}
