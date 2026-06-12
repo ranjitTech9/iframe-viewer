@@ -9,10 +9,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons/icon-192.png', 'icons/icon-512.png'],
       manifest: {
-        name: 'URL Navigator Viewer',
-        short_name: 'URL Viewer',
-        description: 'Embedded URL navigator with custom theme support',
-        theme_color: '#e40001',
+        name: 'FD Web SDK',
+        short_name: 'FD SDK',
+        description: 'FD Web SDK embedded viewer',
+        theme_color: '#16A34A',
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
@@ -41,10 +41,10 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/ranjittech9\.github\.io\/.*/i,
+            urlPattern: /^https:\/\/fd-web-nine\.vercel\.app\/.*/i,
             handler: 'NetworkFirst',
             options: {
-              cacheName: 'iframe-content',
+              cacheName: 'fd-sdk-content',
               expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 },
             },
           },

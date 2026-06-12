@@ -6,77 +6,321 @@
 	padding: 0;
 }
 
+html,
+body,
 #root {
 	width: 100%;
 	height: 100%;
 }
 
-html,
-body {
+/* ── Page / Hero ─────────────────────────────────────────────────── */
+.page {
 	width: 100%;
 	height: 100%;
-}
-
-body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f0f2f5;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-	background: #1a1a2e;
 }
 
-.wrapper {
-	width: 100%;
-	height: 100%;
+.hero {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	text-align: center;
+	padding: 0 24px;
 }
 
-/* Frame area */
-.frame-wrap {
-	position: relative;
-	width: 100%;
-	height: 100%;
+.logo-mark {
+	width: 72px;
+	height: 72px;
+	border-radius: 20px;
+	background: #16A34A;
+	color: #fff;
+	font-size: 26px;
+	font-weight: 800;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	letter-spacing: 1px;
+	margin-bottom: 4px;
+}
+
+.hero-title {
+	font-size: 28px;
+	font-weight: 700;
+	color: #1a1a2e;
+}
+
+.hero-sub {
+	font-size: 15px;
+	color: #6b7280;
+	max-width: 320px;
+}
+
+.btn-launch {
+	margin-top: 8px;
+	padding: 14px 48px;
+	background: #16A34A;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 600;
+	border: none;
+	border-radius: 12px;
+	cursor: pointer;
+	transition: background 0.15s;
+}
+
+.btn-launch:hover {
+	background: #15803D;
+}
+
+/* ── User Details Modal ──────────────────────────────────────────── */
+.modal-backdrop {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.45);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
+	padding: 16px;
+}
+
+.modal-card {
 	background: #fff;
+	border-radius: 20px;
+	padding: 36px 32px 28px;
+	width: 100%;
+	max-width: 500px;
 }
 
-iframe {
+.modal-title {
+	font-size: 22px;
+	font-weight: 700;
+	color: #1a1a2e;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.modal-subtitle {
+	font-size: 14px;
+	color: #6b7280;
+	text-align: center;
+	margin-bottom: 24px;
+	line-height: 1.5;
+}
+
+/* ── Form Fields ─────────────────────────────────────────────────── */
+.field-group {
+	margin-bottom: 14px;
+}
+
+.field-input {
+	width: 100%;
+	padding: 16px 18px;
+	background: #f3f4f6;
+	border: none;
+	border-radius: 12px;
+	font-size: 15px;
+	color: #1a1a2e;
+	outline: none;
+	transition: box-shadow 0.15s;
+}
+
+.field-input::placeholder {
+	color: #9ca3af;
+}
+
+.field-input:focus {
+	box-shadow: 0 0 0 2px #16A34A;
+}
+
+.field-group--date {
+	background: #f3f4f6;
+	border-radius: 12px;
+	padding: 10px 18px 14px;
+	margin-bottom: 14px;
+}
+
+.date-label {
+	display: block;
+	font-size: 11px;
+	font-weight: 600;
+	color: #6b7280;
+	letter-spacing: 0.08em;
+	margin-bottom: 4px;
+}
+
+.field-input--date {
+	background: transparent;
+	padding: 0;
+	font-size: 15px;
+	color: #1a1a2e;
+	border-radius: 0;
+	border: none;
+	width: 100%;
+	outline: none;
+}
+
+.field-input--date:focus {
+	box-shadow: none;
+}
+
+/* ── Gender Toggle ───────────────────────────────────────────────── */
+.gender-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	margin-bottom: 20px;
+}
+
+.gender-btn {
+	padding: 14px;
+	background: #f3f4f6;
+	border: 2px solid transparent;
+	border-radius: 12px;
+	font-size: 15px;
+	font-weight: 500;
+	color: #1a1a2e;
+	cursor: pointer;
+	transition: border-color 0.15s, background 0.15s;
+}
+
+.gender-btn:hover {
+	background: #e9eaf0;
+}
+
+.gender-hint {
+	font-size: 12px;
+	color: #DC2626;
+	margin-top: -8px;
+	margin-bottom: 12px;
+}
+
+.gender-btn--active {
+	border-color: #16A34A;
+	background: #f0fdf4;
+	color: #16A34A;
+	font-weight: 600;
+}
+
+/* ── Action Buttons ──────────────────────────────────────────────── */
+.action-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+}
+
+.btn-cancel {
+	padding: 14px;
+	background: #f3f4f6;
+	border: none;
+	border-radius: 12px;
+	font-size: 15px;
+	font-weight: 500;
+	color: #6b7280;
+	cursor: pointer;
+	transition: background 0.15s;
+}
+
+.btn-cancel:hover {
+	background: #e5e7eb;
+}
+
+.btn-start {
+	padding: 14px;
+	background: #16A34A;
+	border: none;
+	border-radius: 12px;
+	font-size: 15px;
+	font-weight: 700;
+	color: #fff;
+	cursor: pointer;
+	transition: background 0.15s;
+}
+
+.btn-start:hover {
+	background: #15803D;
+}
+
+/* ── SDK Full Screen ─────────────────────────────────────────────── */
+.sdk-screen {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.sdk-topbar {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px;
+	border-bottom: 1px solid #e5e7eb;
+	background: #fff;
+	flex-shrink: 0;
+}
+
+.sdk-back {
+	background: none;
+	border: none;
+	font-size: 15px;
+	color: #16A34A;
+	font-weight: 600;
+	cursor: pointer;
+	padding: 4px 8px;
+	border-radius: 8px;
+	transition: background 0.15s;
+}
+
+.sdk-back:hover {
+	background: #f0fdf4;
+}
+
+.sdk-topbar-title {
+	font-size: 16px;
+	font-weight: 600;
+	color: #1a1a2e;
+}
+
+.sdk-body {
+	flex: 1;
+	position: relative;
+	overflow: hidden;
+}
+
+.sdk-body iframe {
 	width: 100%;
 	height: 100%;
 	border: none;
 	display: block;
 }
 
-/* Loading / error overlay */
-.overlay {
+.sdk-loader {
 	position: absolute;
 	inset: 0;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 12px;
-	background: #1a1a2e;
-	color: #ccc;
-	font-size: 14px;
-	z-index: 10;
+	background: #fff;
+	z-index: 5;
 }
 
-.overlay.error {
-	color: #f87171;
-}
-
-.overlay.error a {
-	color: #7c8cf8;
-	font-size: 13px;
-}
-
+/* ── Spinner ─────────────────────────────────────────────────────── */
 .spinner {
 	width: 36px;
 	height: 36px;
-	border: 3px solid rgba(124, 140, 248, 0.2);
-	border-top-color: #7c8cf8;
+	border: 3px solid rgba(22, 163, 74, 0.15);
+	border-top-color: #16A34A;
 	border-radius: 50%;
 	animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
-	to {
-		transform: rotate(360deg);
-	}
+	to { transform: rotate(360deg); }
 }
