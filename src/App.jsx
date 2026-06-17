@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import './index.css'
+import logoSrc from './logo.png'
 
 const FD_SDK_URL = 'https://fd-web-nine.vercel.app'
 
@@ -13,32 +14,44 @@ const THEME = {
 	fontFamily: 'Inter, sans-serif',
 	fontUrl: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap',
 	borderRadius: '8px',
-	primary: '#16A34A',
-	headerBg: '#15803D',
+	primary: '#1E40AF',          // Trust Blue
+	headerBg: '#1E3A8A',
 	headerText: '#FFFFFF',
-	tabSelected: '#16A34A',
-	buttonBackground: '#16A34A',
+
+	tabSelected: '#2563EB',
+
+	buttonBackground: '#2563EB',
 	buttonTextColor: '#FFFFFF',
-	cancelButtonBg: '#F0FDF4',
-	background: '#F0FDF4',
+	cancelButtonBg: '#EFF6FF',
+
+	background: '#F8FAFC',
 	surface: '#FFFFFF',
+
 	inputBackground: '#FFFFFF',
-	inputBorder: '#86EFAC',
-	border: '#BBF7D0',
-	text: '#14532D',
-	subText: '#4B7A5E',
-	textLight: '#6B9E7E',
-	textSecondary: '#166534',
-	labelColor: '#15803D',
+	inputBorder: '#CBD5E1',
+
+	border: '#E2E8F0',
+
+	text: '#0F172A',
+	subText: '#475569',
+	textLight: '#64748B',
+	textSecondary: '#334155',
+
+	labelColor: '#1E3A8A',
+
 	success: '#16A34A',
 	error: '#DC2626',
-	muted: '#6B7280',
-	link: '#16A34A',
+	pending: '#F59E0B',
+
+	muted: '#94A3B8',
+	link: '#2563EB',
+
+	accent: '#F59E0B'
 }
 
 /* ── User Details Form Modal ───────────────────────────────────────── */
 function UserFormModal({ onStart, onCancel }) {
-	const [refId, setRefId] = useState('user7779')
+	const [refId, setRefId] = useState('user2026')
 	const [pan, setPan] = useState('NUVPS4136M')
 	const [dob, setDob] = useState('1960-08-08')
 	const [gender, setGender] = useState('')
@@ -71,7 +84,7 @@ function UserFormModal({ onStart, onCancel }) {
 			startFDAlertMessage: 'Please complete PAN verification in the Pick my work app to continue with FD booking.',
 			kycRelation: 'Father',
 			kycRelationName: 'John',
-			poweredByLogo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE8p5CngyGVkGdQcJiNqWTQs4UUB1iAnirqQ&s',
+			poweredByLogo: 'https://images.scalebranding.com/cool-a-logo-50afaa14-6473-4b28-b9c5-e08d50d8e7da.jpg',
 		}
 		onStart(user)
 	}
@@ -217,7 +230,7 @@ export default function App() {
 	return (
 		<div className="page">
 			<div className="hero">
-				<div className="logo-mark">FD</div>
+				<img className="logo-mark" src={logoSrc} alt="Finspring Logo" />
 				<h1 className="hero-title">Fixed Deposit SDK</h1>
 				<p className="hero-sub">Open a fixed deposit in minutes — powered by Finspring</p>
 				<button className="btn-launch" onClick={() => setShowForm(true)}>

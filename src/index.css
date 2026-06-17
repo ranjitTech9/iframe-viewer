@@ -36,16 +36,11 @@ body,
 .logo-mark {
 	width: 72px;
 	height: 72px;
-	border-radius: 20px;
-	background: #16A34A;
-	color: #fff;
-	font-size: 26px;
-	font-weight: 800;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	letter-spacing: 1px;
+	object-fit: contain;
 	margin-bottom: 4px;
+	background: #1E3A8A;
+	border-radius: 16px;
+	padding: 10px;
 }
 
 .hero-title {
