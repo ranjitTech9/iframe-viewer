@@ -1,20 +1,22 @@
-import { useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import './index.css'
-import logoSrc from './logo.png'
 
 const FD_SDK_URL = 'https://fd-web-nine.vercel.app'
 
 const API_CONFIG = {
-	apiBaseUrl: 'https://api.finspring.ai/dev/finspring/api/v1/',
-	apiKey: 'f58f4aa316cd7462d679910eba52a3b4',
-	encryptionKey: '60913a3b628a29ac9fdd2147e69d013135ce8be5b26d2ee5ec5e905838fcfa78',
+	// apiBaseUrl: 'https://api.finspring.ai/dev/finspring/api/v1/',
+	// apiKey: 'f58f4aa316cd7462d679910eba52a3b4',
+	// encryptionKey: '60913a3b628a29ac9fdd2147e69d013135ce8be5b26d2ee5ec5e905838fcfa78',
+	apiBaseUrl: 'https://api.finspring.ai/uat/pmw/api/v1/',
+	apiKey: '17218f8100d1def10ee374ee0f63172c',
+	encryptionKey: 'c6bbf374f4ff8091b6274b7346f1061f33621e2c1465a9554fb3ebc99a5fc386'
 }
 
 const THEME = {
 	fontFamily: 'Inter, sans-serif',
 	fontUrl: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap',
 	borderRadius: '8px',
-	primary: '#1E40AF',          // Trust Blue
+	primary: '#1E40AF',
 	headerBg: '#1E3A8A',
 	headerText: '#FFFFFF',
 
@@ -51,8 +53,8 @@ const THEME = {
 
 /* ── User Details Form Modal ───────────────────────────────────────── */
 function UserFormModal({ onStart, onCancel }) {
-	const [refId, setRefId] = useState('user2026')
-	const [pan, setPan] = useState('NUVPS4136M')
+	const [refId, setRefId] = useState('')
+	const [pan, setPan] = useState('')
 	const [dob, setDob] = useState('1960-08-08')
 	const [gender, setGender] = useState('')
 
@@ -170,14 +172,25 @@ function UserFormModal({ onStart, onCancel }) {
 function SDKScreen({ user, onBack }) {
 	const frameRef = useRef(null)
 	const [loading, setLoading] = useState(true)
+	const pendingUser = useRef(user)
+	pendingUser.current = user
 
-	const handleLoad = () => {
-		setLoading(false)
+	const sendInit = useCallback(() => {
 		frameRef.current?.contentWindow?.postMessage(
-			{ type: 'INIT_SDK', payload: { ...API_CONFIG, user, theme: THEME } },
+			{ type: 'INIT_SDK', payload: { ...API_CONFIG, user: pendingUser.current, theme: THEME } },
 			FD_SDK_URL
 		)
-	}
+	}, [])
+
+	useEffect(() => {
+		function onMessage(e) {
+			if (e.origin !== FD_SDK_URL) return
+			if (e.data?.type === 'FD_SDK_READY') sendInit()
+			if (e.data?.type === 'FD_EXIT') onBack()
+		}
+		window.addEventListener('message', onMessage)
+		return () => window.removeEventListener('message', onMessage)
+	}, [sendInit, onBack])
 
 	return (
 		<div className="sdk-screen">
@@ -198,7 +211,7 @@ function SDKScreen({ user, onBack }) {
 					ref={frameRef}
 					src={FD_SDK_URL}
 					title="FD Web SDK"
-					onLoad={handleLoad}
+					onLoad={() => { setLoading(false); sendInit(); }}
 					allow="camera; microphone"
 				/>
 			</div>
@@ -218,7 +231,7 @@ export default function App() {
 		setScreen('sdk')
 	}
 
-	if (screen === 'sdk') {
+	if (screen === 'sdk' && user) {
 		return (
 			<SDKScreen
 				user={user}
@@ -230,7 +243,6 @@ export default function App() {
 	return (
 		<div className="page">
 			<div className="hero">
-				<img className="logo-mark" src={logoSrc} alt="Finspring Logo" />
 				<h1 className="hero-title">Fixed Deposit SDK</h1>
 				<p className="hero-sub">Open a fixed deposit in minutes — powered by Finspring</p>
 				<button className="btn-launch" onClick={() => setShowForm(true)}>
