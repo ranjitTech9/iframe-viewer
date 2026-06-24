@@ -17,13 +17,13 @@ const THEME = {
 	fontFamily: 'Inter, sans-serif',
 	fontUrl: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap',
 	borderRadius: '8px',
-	primary: '#1E40AF',
-	headerBg: '#1E3A8A',
+	primary: '#A51414',
+	headerBg: '#A51414',
 	headerText: '#FFFFFF',
 
-	tabSelected: '#2563EB',
+	tabSelected: '#A51414',
 
-	buttonBackground: '#2563EB',
+	buttonBackground: '#A51414',
 	buttonTextColor: '#FFFFFF',
 	cancelButtonBg: '#EFF6FF',
 
@@ -40,7 +40,7 @@ const THEME = {
 	textLight: '#64748B',
 	textSecondary: '#334155',
 
-	labelColor: '#1E3A8A',
+	labelColor: '#A51414',
 
 	success: '#16A34A',
 	error: '#DC2626',
