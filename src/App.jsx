@@ -9,7 +9,8 @@ const API_CONFIG = {
 	// encryptionKey: '60913a3b628a29ac9fdd2147e69d013135ce8be5b26d2ee5ec5e905838fcfa78',
 	apiBaseUrl: 'https://api.finspring.ai/uat/pmw/api/v1/',
 	apiKey: '17218f8100d1def10ee374ee0f63172c',
-	encryptionKey: 'c6bbf374f4ff8091b6274b7346f1061f33621e2c1465a9554fb3ebc99a5fc386'
+	encryptionKey: 'c6bbf374f4ff8091b6274b7346f1061f33621e2c1465a9554fb3ebc99a5fc386',
+	isForMobile: false,
 }
 
 const THEME = {
